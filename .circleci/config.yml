@@ -40,12 +40,7 @@ jobs:
     - run: sudo chmod -Rv +x bungee
     - run: sudo chmod -Rv +x common
     - run: sudo chmod -Rv +x velocity
-    #- run: sudo chmod -Rv +x .circleci/geyser.sh
-    #- run: sudo .circleci/geyser.sh
-    - run: sudo mvn clean
-    #- run: sudo mvn dependency:resolve
-    - run: sudo mvn validate
-    - run: sudo mvn install
+    - run: sudo mvn clean install
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
