@@ -46,7 +46,8 @@ jobs:
     - run: sudo chmod -Rv +x .circleci/builds.sh
     - run: sudo mvn compiler:compile
     - run: mkdir builds
-    - run: sudo .circleci/builds.sh
+    - run: cp -rf ./bukkit/target/*.jar ./builds | cp -rf ./bungee/target/*.jar ./builds | cp -rf ./common/target/*.jar ./builds | cp -rf ./velocity/target/*.jar ./builds
+    #- run: sudo .circleci/builds.sh
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
