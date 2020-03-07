@@ -50,7 +50,7 @@ jobs:
         paths:
         - ~/.m2
     # Test
-    - run: yes|cp -rf ./target/ $CIRCLE_ARTIFACTS
+    - run: yes|cp -rf ./m2/target/classes/ $CIRCLE_ARTIFACTS
     # Teardown
     # Save test results
     - store_test_results:
