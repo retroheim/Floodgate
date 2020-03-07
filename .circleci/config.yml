@@ -44,7 +44,7 @@ jobs:
     - run: sudo chmod -Rv +x common
     - run: sudo chmod -Rv +x velocity
     - run: sudo chmod -Rv +x .circleci/builds.sh
-    - run: sudo mvn compiler:compile
+    - run: sudo mvn clean package
     - run: mkdir builds
     #- run: cp -rf ./target/bukkit/*.jar ./builds | cp -rf ./**/target/*.jar ./builds/
     - run: sudo .circleci/builds.sh
