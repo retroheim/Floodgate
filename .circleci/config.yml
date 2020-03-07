@@ -40,7 +40,7 @@ jobs:
     - run: sudo chmod -Rv +x bungee
     - run: sudo chmod -Rv +x common
     - run: sudo chmod -Rv +x velocity
-    - run: sudo mvn clean install
+    - run: sudo mvn clean package
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
