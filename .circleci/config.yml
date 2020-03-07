@@ -21,7 +21,7 @@ jobs:
     - checkout
     # Prepare for artifact
     - run: mkdir -p %CIRCLE_ARTIFACTS% %CIRCLE_TEST_REPORTS%
-     Dependencies
+    # Dependencies
     - run: sudo apt update
     - run: sudo apt upgrade
     - run: sudo apt-get install maven
