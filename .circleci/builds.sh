@@ -4,9 +4,11 @@
 set -e
 basedir="$(pwd -P)"
 #\cp -rf "$basedir/**/target/*.jar" "$basedir/builds/"
-dir "../$basedir/"
+#dir "../$basedir/"
 echo " "
 dir "$basedir/"
+echo " "
+dir "$basedir/bukkit/target/"
 echo " "
 dir "$basedir/bukkit/target/classes/org/geysermc/"
 \cp -rf "$basedir/bukkit/target/classes/org/geysermc/*.jar" "$basedir/builds/"
