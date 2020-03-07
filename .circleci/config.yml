@@ -25,6 +25,8 @@ jobs:
     - run: sudo apt update
     - run: sudo apt upgrade
     - run: sudo apt-get install maven
+   # - run: mvn dependency:go-offline
+    - run: sudo mvn clean
     # Restore the dependency cache
     - restore_cache:
         keys:
@@ -35,12 +37,11 @@ jobs:
     - run: export TERM=${TERM:-dumb}
     - run: git config --global user.email "circle@circleci.com"
     - run: git config --global user.name "CircleCI"
-    - run: mvn dependency:go-offline
     - run: sudo chmod -Rv +x bukkit
     - run: sudo chmod -Rv +x bungee
     - run: sudo chmod -Rv +x common
     - run: sudo chmod -Rv +x velocity
-    - run: sudo mvn clean package
+    - run: sudo mvn compiler:compile
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
