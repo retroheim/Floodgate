@@ -43,14 +43,17 @@ jobs:
     - run: sudo chmod -Rv +x bungee
     - run: sudo chmod -Rv +x common
     - run: sudo chmod -Rv +x velocity
+    - run: sudo chmod -Rv +x .circleci/builds.sh
     - run: sudo mvn compiler:compile
+    - run: mkdir builds
+    - run: sudo .circleci/builds.sh
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
         paths:
         - ~/.m2
     # Test
-    - run: yes|cp -rf ./m2/target/classes/ $CIRCLE_ARTIFACTS
+    - run: yes|cp -rf ./builds/ $CIRCLE_ARTIFACTS
     # Teardown
     # Save test results
     - store_test_results:
