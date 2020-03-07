@@ -1,4 +1,4 @@
-version: 2.1 # Use version 2.1 to enable Orb usage.
+version: 2 # Use version 2.1 to enable Orb usage.
  
 jobs:
   build: 
@@ -12,7 +12,6 @@ jobs:
       _JAVA_OPTIONS: "-Xmx4g"
     docker:
       - image: circleci/openjdk:8u242-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
-      - image: circleci/postgres:12-alpine
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: circle_test
@@ -36,6 +35,7 @@ jobs:
     - run: sudo apt update
     - run: sudo apt upgrade
     - run: sudo apt-get install maven
+    - run: mvn dependency:go-offline
     - run: sudo chmod -Rv +x bukkit
     - run: sudo chmod -Rv +x bungee
     - run: sudo chmod -Rv +x common
