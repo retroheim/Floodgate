@@ -12,7 +12,7 @@ jobs:
       _JAVA_OPTIONS: "-Xmx4g"
     docker:
       - image: circleci/openjdk:8-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
-      - image: circleci/clojure:8-tools-deps-stretch
+      - image: circleci/clojure:openjdk-8-tools-deps-stretch
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: circle_test
