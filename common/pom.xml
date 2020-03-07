@@ -10,13 +10,23 @@
     </parent>
     <groupId>org.geysermc</groupId>
     <artifactId>floodgate-common</artifactId>
-
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <name>nukkitx-releases</name>
+            <url>https://repo.nukkitx.com/maven-releases</url>
+        </repository>
+        <repository>
+            <id>snapshots</id>
+            <name>nukkitx-snapshots</name>
+            <url>https://repo.nukkitx.com/maven-snapshots</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.geysermc</groupId>
             <artifactId>common</artifactId>
             <version>${geyser-version}</version>
-            <type>pom</type>
             <scope>compile</scope>
         </dependency>
         <dependency>
