@@ -21,8 +21,10 @@ jobs:
     - checkout
     # Prepare for artifact
     - run: mkdir -p %CIRCLE_ARTIFACTS% %CIRCLE_TEST_REPORTS%
-    # Dependencies
-  #  - run: mvn dependency:go-offline
+     Dependencies
+    - run: sudo apt update
+    - run: sudo apt upgrade
+    - run: sudo apt-get install maven
     # Restore the dependency cache
     - restore_cache:
         keys:
@@ -33,9 +35,6 @@ jobs:
     - run: export TERM=${TERM:-dumb}
     - run: git config --global user.email "circle@circleci.com"
     - run: git config --global user.name "CircleCI"
-    #- run: sudo apt update
-    #- run: sudo apt upgrade
-    #- run: sudo apt-get install maven
     - run: mvn dependency:go-offline
     - run: sudo chmod -Rv +x bukkit
     - run: sudo chmod -Rv +x bungee
