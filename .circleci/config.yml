@@ -68,21 +68,8 @@ jobs:
 #    - add_ssh_keys:
 #        fingerprints:
 #          - "7b:8e:5c:68:31:7b:66:4c:29:20:66:55:9b:c8:b2:d2"  publish-github-release:
-  publish-github-release:
-    working_directory: ~/Floodgate/Floodgate
-    parallelism: 1
-    shell: /bin/bash --login
-    environment:
-      TERM: dumb
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-    docker:
-      - image: cibuilds/github:0.10
-    steps:
-      - attach_workspace:
-          at: $CIRCLE_ARTIFACTS
       - run:
           name: "Publish Release on GitHub"
           command: |
             VERSION=$(my-binary --version)
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} $CIRCLE_ARTIFACTS
