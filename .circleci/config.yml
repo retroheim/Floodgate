@@ -66,10 +66,14 @@ jobs:
         path: /tmp/circleci-test-results
 #    - add_ssh_keys:
 #        fingerprints:
-#          - "7b:8e:5c:68:31:7b:66:4c:29:20:66:55:9b:c8:b2:d2"
-    - run:
-        name: "Publish Release on GitHub"
-        command: |
-          go get github.com/tcnksm/ghr
-          VERSION=$(my-binary --version)
-          ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+#          - "7b:8e:5c:68:31:7b:66:4c:29:20:66:55:9b:c8:b2:d2"  publish-github-release:
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - attach_workspace:
+          at: ./artifacts
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            VERSION=$(my-binary --version)
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
