@@ -13,6 +13,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
       - image: circleci/clojure:openjdk-8-tools-deps-stretch
+      - image: cibuilds/github:0.10
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: circle_test
@@ -67,13 +68,11 @@ jobs:
 #    - add_ssh_keys:
 #        fingerprints:
 #          - "7b:8e:5c:68:31:7b:66:4c:29:20:66:55:9b:c8:b2:d2"  publish-github-release:
-    docker:
-      - image: cibuilds/github:0.10
-    steps:
-      - attach_workspace:
-          at: /tmp/circleci-artifacts
-      - run:
-          name: "Publish Release on GitHub"
-          command: |
-            VERSION=$(my-binary --version)
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+      steps:
+        - attach_workspace:
+            at: /tmp/circleci-artifacts
+        - run:
+            name: "Publish Release on GitHub"
+            command: |
+              VERSION=$(my-binary --version)
+              ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
