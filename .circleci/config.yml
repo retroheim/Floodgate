@@ -73,7 +73,7 @@ jobs:
       - image: cibuilds/github:0.10
     steps:
       - attach_workspace:
-          at: ./artifacts
+          at: /tmp/circleci-artifacts
       - run:
           name: "Publish Release on GitHub"
           command: |
