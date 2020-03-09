@@ -56,11 +56,11 @@ jobs:
         - ~/.m2
     # Test
     - run: yes|cp -rf ./builds/ $CIRCLE_ARTIFACTS
-      - run:
-          name: "Publish Release on GitHub"
-          command: |
-            VERSION=$(my-binary --version)
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} $CIRCLE_ARTIFACTS
+    - run:
+        name: "Publish Release on GitHub"
+        command: |
+          VERSION=$(my-binary --version)
+          ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} $CIRCLE_ARTIFACTS
     # Teardown
     # Save test results
     - store_test_results:
