@@ -64,3 +64,8 @@ jobs:
         path: /tmp/circleci-artifacts
     - store_artifacts:
         path: /tmp/circleci-test-results
+  deploy-job:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "fb:f4:49:d4:3b:a4:8c:70:93:16:5e:c3:94:9b:08:5c"
