@@ -69,10 +69,10 @@ jobs:
 #        fingerprints:
 #          - "7b:8e:5c:68:31:7b:66:4c:29:20:66:55:9b:c8:b2:d2"  publish-github-release:
       steps:
-        - attach_workspace:
-            at: /tmp/circleci-artifacts
-        - run:
-            name: "Publish Release on GitHub"
-            command: |
-              VERSION=$(my-binary --version)
-              ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+         attach_workspace:
+           at: /tmp/circleci-artifacts
+         run:
+           name: "Publish Release on GitHub"
+           command: |
+             VERSION=$(my-binary --version)
+             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
