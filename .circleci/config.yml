@@ -68,4 +68,4 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "fb:f4:49:d4:3b:a4:8c:70:93:16:5e:c3:94:9b:08:5c"
+            - "SO:ME:FIN:G:ER:PR:IN:T"
