@@ -27,7 +27,6 @@
             <url>https://repo.nukkitx.com/maven-snapshots</url>
         </repository>
     </repositories>
-    </repositories>
 
     <dependencies>
         <dependency>
