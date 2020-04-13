@@ -14,10 +14,19 @@
     <artifactId>floodgate-common</artifactId>
 
     <repositories>
+
+    <repositories>
         <repository>
-            <id>nukkitx-repo</id>
+            <id>releases</id>
+            <name>nukkitx-releases</name>
+            <url>https://repo.nukkitx.com/maven-releases</url>
+        </repository>
+        <repository>
+            <id>snapshots</id>
+            <name>nukkitx-snapshots</name>
             <url>https://repo.nukkitx.com/maven-snapshots</url>
         </repository>
+    </repositories>
     </repositories>
 
     <dependencies>
