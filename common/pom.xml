@@ -14,8 +14,6 @@
     <artifactId>floodgate-common</artifactId>
 
     <repositories>
-
-    <repositories>
         <repository>
             <id>releases</id>
             <name>nukkitx-releases</name>
