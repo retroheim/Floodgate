@@ -10,6 +10,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
+import java.util.UUID;
 
 import static org.geysermc.floodgate.util.BedrockData.EXPECTED_LENGTH;
 import static org.geysermc.floodgate.util.BedrockData.FLOODGATE_IDENTIFIER;
@@ -45,7 +46,15 @@ public class HandshakeHandler {
             }
 
             FloodgatePlayer player = new FloodgatePlayer(bedrockData, usernamePrefix, replaceSpaces);
+
+            // Get the UUID from the bungee instance to fix linked account UUIDs being wrong
+            if (isBungeeData) {
+                String uuid = data[5].replaceAll("(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})", "$1-$2-$3-$4-$5");
+                player.setJavaUniqueId(UUID.fromString(uuid));
+            }
+
             AbstractFloodgateAPI.players.put(player.getJavaUniqueId(), player);
+
             return new HandshakeResult(ResultType.SUCCESS, data, bedrockData, player);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
             e.printStackTrace();
